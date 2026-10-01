@@ -10,7 +10,7 @@ import {
 
 const Celebracion = ({
   titulo = "Celebración",
-  fecha = "7 de Noviembre",
+  fecha = "7 Sabado de Noviembre",
   hora = "7:00 PM",
   lugar = "Lugar de la celebración",
   direccion = "C. Andrés Renteria 83, Lomas de La Soledad, 45403 Tonalá, Jal.",
