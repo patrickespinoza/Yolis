@@ -1,115 +1,465 @@
 import React from "react";
 import { motion } from "framer-motion";
+import {
+  Sparkles,
+  Shirt,
+  Check,
+} from "lucide-react";
 
-const Vestimenta = ({
-  imagen = "/dresscode.png",
-}) => {
+const Vestimenta = () => {
   return (
-    <section className="w-full bg-[#F4E8DD] py-20 px-5 overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
-        viewport={{ once: true }}
+    <section
+      className="
+        relative
+        isolate
+        w-full
+        overflow-hidden
+        bg-[#080808]
+        px-5
+        py-24
+        sm:px-8
+        sm:py-28
+      "
+    >
+      {/* ========================================
+          ILUMINACIÓN DE FONDO
+      ======================================== */}
+
+      <div
         className="
-          max-w-6xl
+          pointer-events-none
+          absolute
+          left-1/2
+          top-0
+          h-[450px]
+          w-[600px]
+          -translate-x-1/2
+          rounded-full
+          bg-[#D5A84B]/[0.07]
+          blur-[130px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-40
+          -right-40
+          h-[400px]
+          w-[400px]
+          rounded-full
+          bg-[#D5A84B]/[0.05]
+          blur-[120px]
+        "
+      />
+
+      {/* ========================================
+          DESTELLOS
+      ======================================== */}
+
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          left-[9%]
+          top-[15%]
+          text-[#D5A84B]/40
+        "
+        animate={{
+          opacity: [0.25, 0.9, 0.25],
+          scale: [0.85, 1.15, 0.85],
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <Sparkles size={17} strokeWidth={1} />
+      </motion.div>
+
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          bottom-[15%]
+          right-[9%]
+          text-[#D5A84B]/30
+        "
+        animate={{
+          opacity: [0.2, 0.75, 0.2],
+          scale: [0.8, 1.1, 0.8],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          delay: 1,
+        }}
+      >
+        <Sparkles size={14} strokeWidth={1} />
+      </motion.div>
+
+      {/* ========================================
+          CONTENIDO
+      ======================================== */}
+
+      <div
+        className="
+          relative
+          z-10
           mx-auto
-          bg-white/70
-          backdrop-blur-xl
-          rounded-tl-[4rem]
-          rounded-br-[4rem]
-          rounded-tr-2xl
-          rounded-bl-2xl
-          shadow-[0_25px_70px_rgba(74,20,29,.16)]
-          border border-[#B88A8A]/30
-          overflow-hidden
+          max-w-4xl
+          text-center
         "
       >
-        <div className="grid lg:grid-cols-2">
+        {/* ENCABEZADO */}
 
-          {/* IMAGEN */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          viewport={{ once: true }}
+        >
+          <p
+            className="
+              mb-4
+              text-[10px]
+              uppercase
+              tracking-[0.42em]
+              text-[#D5A84B]/75
+              sm:text-xs
+            "
+          >
+            Detalles de la celebración
+          </p>
+
+          <h2
+            className="
+              font-['Playfair_Display']
+              text-4xl
+              font-normal
+              text-[#E4BD6C]
+              sm:text-5xl
+              md:text-6xl
+            "
+          >
+            Código de Vestimenta
+          </h2>
+
+          {/* DIVISOR */}
+
+          <div
+            className="
+              mx-auto
+              mt-7
+              flex
+              max-w-[260px]
+              items-center
+              justify-center
+              gap-3
+            "
+          >
+            <div
+              className="
+                h-px
+                flex-1
+                bg-gradient-to-r
+                from-transparent
+                to-[#D5A84B]/60
+              "
+            />
+
+            <span className="text-[8px] text-[#D5A84B]">
+              ◆
+            </span>
+
+            <div
+              className="
+                h-px
+                flex-1
+                bg-gradient-to-l
+                from-transparent
+                to-[#D5A84B]/60
+              "
+            />
+          </div>
+        </motion.div>
+
+        {/* ========================================
+            TARJETA
+        ======================================== */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 40,
+            scale: 0.97,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.9,
+            delay: 0.15,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          viewport={{ once: true }}
+          className="
+            relative
+            mx-auto
+            mt-12
+            max-w-2xl
+            overflow-hidden
+            border
+            border-[#D5A84B]/45
+            bg-[#0D0D0D]
+            px-6
+            py-12
+            shadow-[0_25px_70px_rgba(0,0,0,0.45)]
+            sm:px-12
+            sm:py-14
+          "
+        >
+          {/* BORDE INTERIOR */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-[7px]
+              border
+              border-[#D5A84B]/15
+            "
+          />
+
+          {/* BRILLO SUPERIOR */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-1/2
+              top-0
+              h-px
+              w-[65%]
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#E4BD6C]
+              to-transparent
+            "
+          />
+
+          {/* ========================================
+              ICONO
+          ======================================== */}
 
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9 }}
+            initial={{
+              opacity: 0,
+              scale: 0.8,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={{
+              duration: 0.6,
+              delay: 0.3,
+            }}
             viewport={{ once: true }}
-            className="overflow-hidden"
+            className="
+              relative
+              z-10
+              mx-auto
+              mb-7
+              flex
+              h-20
+              w-20
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-[#D5A84B]/50
+              bg-[#D5A84B]/[0.06]
+              text-[#E4BD6C]
+              shadow-[0_0_30px_rgba(213,168,75,0.10)]
+            "
           >
-            <img
-              src={imagen}
-              alt="Dress Code"
-              className="
-                w-full
-                h-full
-                min-h-[420px]
-                object-cover
-                hover:scale-105
-                transition-transform
-                duration-700
-              "
+            <Shirt
+              size={31}
+              strokeWidth={1.2}
             />
           </motion.div>
 
-          {/* TEXTO */}
+          {/* ========================================
+              FORMAL
+          ======================================== */}
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: .15 }}
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.3,
+            }}
             viewport={{ once: true }}
-            className="
-              flex
-              flex-col
-              justify-center
-              px-8
-              py-14
-              sm:px-14
-            "
+            className="relative z-10"
           >
-
-            <p className="uppercase tracking-[.35em] text-[#B88A8A] text-sm font-semibold">
-              Nuestro Día
+            <p
+              className="
+                mb-3
+                text-[9px]
+                uppercase
+                tracking-[0.35em]
+                text-[#D5A84B]/65
+              "
+            >
+              Vestimenta
             </p>
 
-            <h2 className="font-playfair text-[#4A141D] text-5xl mt-5">
-              Detalles
-            </h2>
-
-            <div className="w-24 h-px bg-[#B88A8A] my-8"></div>
-
-            <h3 className="font-cursiveDancing text-[#B88A8A] text-5xl">
-              Código de Vestimenta
-            </h3>
-
-            <p className="mt-8 text-[#4A141D] text-3xl font-playfair">
+            <h3
+              className="
+                font-['Playfair_Display']
+                text-4xl
+                font-normal
+                text-[#F1E5CE]
+                sm:text-5xl
+              "
+            >
               Formal
-            </p>
-
-            <p className="mt-6 text-[#4A141D]/70 leading-8 text-lg">
-              Nos encantará verte elegante para celebrar este
-              día tan especial junto a nosotros.
-            </p>
-
-            <div className="my-10 w-16 h-px bg-[#B88A8A]"></div>
-
-            <h3 className="font-cursiveDancing text-[#B88A8A] text-5xl">
-              Evento
             </h3>
 
-            <p className="mt-6 text-[#4A141D] text-2xl font-playfair">
-              Solo para adultos
-            </p>
+            {/* DIVISOR PEQUEÑO */}
 
-            <p className="mt-4 text-[#4A141D]/70 leading-8">
-              Gracias por comprender y permitirnos disfrutar
-              juntos de una velada especial.
-            </p>
+            <div
+              className="
+                mx-auto
+                my-7
+                h-px
+                w-14
+                bg-[#D5A84B]/45
+              "
+            />
 
+            <p
+              className="
+                mx-auto
+                max-w-md
+                font-['Playfair_Display']
+                text-[15px]
+                leading-7
+                text-[#EEE2CC]/65
+                sm:text-base
+                sm:leading-8
+              "
+            >
+              Acompáñanos con un estilo elegante para celebrar
+              juntos esta noche tan especial.
+            </p>
           </motion.div>
 
-        </div>
-      </motion.div>
+          {/* ========================================
+              COLOR NEGRO
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.4,
+            }}
+            viewport={{ once: true }}
+            className="
+              relative
+              z-10
+              mx-auto
+              mt-10
+              max-w-sm
+              border
+              border-[#D5A84B]/25
+              bg-black
+              px-6
+              py-7
+            "
+          >
+            <p
+              className="
+                mb-5
+                text-[9px]
+                uppercase
+                tracking-[0.32em]
+                text-[#D5A84B]/65
+              "
+            >
+              Color
+            </p>
+
+            
+
+            <p
+              className="
+                font-['Playfair_Display']
+                text-2xl
+                text-[#E4BD6C]
+              "
+            >
+              Negro
+            </p>
+          </motion.div>
+
+          {/* ========================================
+              FRASE FINAL
+          ======================================== */}
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: 0.5,
+            }}
+            viewport={{ once: true }}
+            className="
+              relative
+              z-10
+              mt-9
+              font-['Playfair_Display']
+              text-sm
+              italic
+              tracking-wide
+              text-[#D5A84B]/60
+            "
+          >
+            Elegancia para una noche inolvidable
+          </motion.p>
+        </motion.div>
+      </div>
     </section>
   );
 };

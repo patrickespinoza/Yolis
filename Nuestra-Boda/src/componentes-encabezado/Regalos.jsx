@@ -1,165 +1,457 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Heart,
+  Sparkles,
+} from "lucide-react";
 
 const Regalos = () => {
-  const [mostrarModal, setMostrarModal] = useState(false);
-  const [copiado, setCopiado] = useState(false);
-
-  const copiarCuenta = () => {
-    navigator.clipboard.writeText("1234 5678 9012 3456");
-    setCopiado(true);
-
-    setTimeout(() => {
-      setCopiado(false);
-    }, 2000);
-  };
-
   return (
-    <section className="w-full bg-[#F4E8DD] py-24 px-5 overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
-        viewport={{ once: true }}
+    <section
+      className="
+        relative
+        isolate
+        w-full
+        overflow-hidden
+        bg-[#080808]
+        px-5
+        py-24
+        sm:px-8
+        sm:py-28
+      "
+    >
+      {/* ========================================
+          ILUMINACIÓN DE FONDO
+      ======================================== */}
+
+      <div
         className="
-          max-w-5xl mx-auto
-          bg-white/70
-          backdrop-blur-xl
-          rounded-tl-[4rem]
-          rounded-br-[4rem]
-          rounded-tr-2xl
-          rounded-bl-2xl
-          border border-[#B88A8A]/30
-          shadow-[0_25px_70px_rgba(74,20,29,.18)]
-          overflow-hidden
+          pointer-events-none
+          absolute
+          left-1/2
+          top-0
+          h-[450px]
+          w-[600px]
+          -translate-x-1/2
+          rounded-full
+          bg-[#D5A84B]/[0.07]
+          blur-[130px]
         "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-40
+          -left-40
+          h-[400px]
+          w-[400px]
+          rounded-full
+          bg-[#D5A84B]/[0.05]
+          blur-[120px]
+        "
+      />
+
+      {/* ========================================
+          DESTELLOS
+      ======================================== */}
+
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          left-[8%]
+          top-[13%]
+          text-[#D5A84B]/40
+        "
+        animate={{
+          opacity: [0.25, 0.9, 0.25],
+          scale: [0.85, 1.15, 0.85],
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       >
-        <div className="px-8 py-16 sm:px-14 text-center">
-          <p className="uppercase tracking-[.35em] text-[#B88A8A] text-sm font-semibold">
-            Con cariño
-          </p>
-
-          <h2 className="font-playfair text-[#4A141D] text-5xl mt-4">
-            Regalos
-          </h2>
-
-          <div className="w-24 h-px bg-[#B88A8A] mx-auto mt-6"></div>
-
-          <motion.img
-            whileHover={{ scale: 1.05, rotate: 3 }}
-            transition={{ duration: 0.3 }}
-            src="/regalo1.png"
-            alt="Regalo"
-            className="w-28 mx-auto mt-12"
-          />
-
-          <p className="max-w-2xl mx-auto mt-10 text-[#4A141D] text-xl leading-10 font-playfair">
-            El mejor regalo será compartir este día contigo.
-            <br />
-            <br />
-            Si deseas tener un detalle con nosotros, puedes hacerlo mediante una
-            transferencia bancaria.
-          </p>
-
-          <button
-            type="button"
-            onClick={() => setMostrarModal(true)}
-            className="
-              mt-12
-              bg-[#4A141D]
-              text-[#F4E8DD]
-              px-10
-              py-4
-              rounded-full
-              text-lg
-              shadow-xl
-              hover:scale-105
-              transition
-            "
-          >
-            Ver datos bancarios
-          </button>
-        </div>
+        <Sparkles size={17} strokeWidth={1} />
       </motion.div>
 
-      <AnimatePresence>
-        {mostrarModal && (
-          <motion.div
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          bottom-[14%]
+          right-[8%]
+          text-[#D5A84B]/30
+        "
+        animate={{
+          opacity: [0.2, 0.7, 0.2],
+          scale: [0.8, 1.1, 0.8],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          delay: 1,
+        }}
+      >
+        <Sparkles size={14} strokeWidth={1} />
+      </motion.div>
+
+      {/* ========================================
+          CONTENIDO
+      ======================================== */}
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          max-w-4xl
+          text-center
+        "
+      >
+
+
+        {/* ========================================
+            TARJETA LLUVIA DE SOBRES
+        ======================================== */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 40,
+            scale: 0.97,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.9,
+            delay: 0.15,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          viewport={{ once: true }}
+          className="
+            relative
+            mx-auto
+            mt-12
+            max-w-2xl
+            overflow-hidden
+            border
+            border-[#D5A84B]/45
+            bg-[#0D0D0D]
+            px-7
+            py-14
+            shadow-[0_25px_70px_rgba(0,0,0,0.45)]
+            sm:px-14
+            sm:py-16
+          "
+        >
+          {/* BORDE INTERIOR */}
+
+          <div
             className="
-              fixed inset-0
-              bg-black/60
-              backdrop-blur-md
-              flex items-center justify-center
-              z-[9999]
-              px-5
+              pointer-events-none
+              absolute
+              inset-[7px]
+              border
+              border-[#D5A84B]/15
             "
-            onClick={() => setMostrarModal(false)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          />
+
+          {/* BRILLO SUPERIOR */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-1/2
+              top-0
+              h-px
+              w-[65%]
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#E4BD6C]
+              to-transparent
+            "
+          />
+
+          {/* ========================================
+              SOBRE
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.8,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.25,
+            }}
+            viewport={{ once: true }}
+            className="
+              relative
+              z-10
+              mx-auto
+              mb-8
+              flex
+              h-24
+              w-24
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-[#D5A84B]/50
+              bg-[#D5A84B]/[0.06]
+              text-[#E4BD6C]
+              shadow-[0_0_35px_rgba(213,168,75,0.10)]
+            "
           >
-            <motion.div
-              onClick={(e) => e.stopPropagation()}
-              initial={{ scale: 0.85, opacity: 0, y: 60 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.85, opacity: 0, y: 60 }}
-              transition={{ duration: 0.35 }}
+            <Mail
+              size={40}
+              strokeWidth={1.1}
+            />
+
+            {/* CORAZÓN PEQUEÑO */}
+
+            <div
               className="
-                relative
-                w-full
-                max-w-[360px]
-                rounded-[2rem]
-                bg-[#4A141D]
-                text-[#F4E8DD]
-                p-8
-                shadow-[0_30px_80px_rgba(0,0,0,.4)]
+                absolute
+                -bottom-1
+                -right-1
+                flex
+                h-8
+                w-8
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-[#D5A84B]/60
+                bg-[#0D0D0D]
+                text-[#D5A84B]
               "
             >
-              <button
-                type="button"
-                onClick={() => setMostrarModal(false)}
-                className="absolute top-4 right-5 text-3xl leading-none"
-              >
-                ×
-              </button>
-
-              <h3 className="font-playfair text-3xl">Santander</h3>
-
-              <div className="w-12 h-8 rounded bg-[#E6C15B] mt-6"></div>
-
-              <p className="tracking-[.18em] text-lg mt-8">
-                1234 5678 9012 3456
-              </p>
-
-              <p className="mt-6 text-sm text-[#F4E8DD]/70">Titular</p>
-
-              <p className="font-playfair">Juan Pérez</p>
-
-              <button
-                type="button"
-                onClick={copiarCuenta}
-                className="
-                  w-full
-                  mt-8
-                  bg-[#F4E8DD]
-                  text-[#4A141D]
-                  py-3
-                  rounded-full
-                  font-semibold
-                "
-              >
-                Copiar número
-              </button>
-
-              {copiado && (
-                <p className="text-center mt-4 text-[#B88A8A]">
-                  Número copiado
-                </p>
-              )}
-            </motion.div>
+              <Heart
+                size={13}
+                strokeWidth={1.5}
+              />
+            </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+
+          {/* ========================================
+              TÍTULO
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.3,
+            }}
+            viewport={{ once: true }}
+            className="relative z-10"
+          >
+            <p
+              className="
+                mb-3
+                text-[9px]
+                uppercase
+                tracking-[0.35em]
+                text-[#D5A84B]/65
+              "
+            >
+              Nuestro regalo
+            </p>
+
+            <h3
+              className="
+                font-['Playfair_Display']
+                text-3xl
+                font-normal
+                text-[#F1E5CE]
+                sm:text-4xl
+              "
+            >
+              Lluvia de Sobres
+            </h3>
+
+            <div
+              className="
+                mx-auto
+                my-7
+                h-px
+                w-14
+                bg-[#D5A84B]/45
+              "
+            />
+
+            {/* TEXTO PRINCIPAL */}
+
+            <p
+              className="
+                mx-auto
+                max-w-lg
+                font-['Playfair_Display']
+                text-base
+                leading-8
+                text-[#EEE2CC]/75
+                sm:text-lg
+                sm:leading-9
+              "
+            >
+              Tu presencia es el mejor regalo para celebrar
+              este momento tan especial.
+            </p>
+
+            <p
+              className="
+                mx-auto
+                mt-5
+                max-w-lg
+                font-['Playfair_Display']
+                text-base
+                leading-8
+                text-[#EEE2CC]/65
+                sm:text-lg
+                sm:leading-9
+              "
+            >
+              Si deseas tener un detalle, el día de la fiesta
+              tendremos
+              <span className="text-[#E4BD6C]">
+                {" "}sobres disponibles{" "}
+              </span>
+              para que puedas depositar tu regalo en efectivo.
+            </p>
+          </motion.div>
+
+          {/* ========================================
+              INDICACIÓN
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.4,
+            }}
+            viewport={{ once: true }}
+            className="
+              relative
+              z-10
+              mx-auto
+              mt-10
+              max-w-md
+              border
+              border-[#D5A84B]/25
+              bg-black/50
+              px-6
+              py-6
+            "
+          >
+            <Mail
+              size={21}
+              strokeWidth={1.3}
+              className="
+                mx-auto
+                mb-4
+                text-[#D5A84B]
+              "
+            />
+
+            <p
+              className="
+                text-[9px]
+                uppercase
+                tracking-[0.3em]
+                text-[#D5A84B]/65
+              "
+            >
+              El día del evento
+            </p>
+
+            <p
+              className="
+                mt-3
+                font-['Playfair_Display']
+                text-sm
+                leading-7
+                text-[#F1E5CE]/80
+                sm:text-base
+              "
+            >
+              Encontrarás los sobres disponibles en la
+              celebración para colocar tu obsequio.
+            </p>
+          </motion.div>
+
+          {/* ========================================
+              FRASE FINAL
+          ======================================== */}
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: 0.5,
+            }}
+            viewport={{ once: true }}
+            className="
+              relative
+              z-10
+              mt-10
+            "
+          >
+            <Heart
+              size={15}
+              strokeWidth={1.2}
+              className="
+                mx-auto
+                mb-4
+                text-[#D5A84B]/70
+              "
+            />
+
+            <p
+              className="
+                font-['Playfair_Display']
+                text-sm
+                italic
+                tracking-wide
+                text-[#D5A84B]/65
+              "
+            >
+              Gracias por ser parte de esta celebración
+            </p>
+          </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 };

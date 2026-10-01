@@ -1,106 +1,611 @@
 import React from "react";
 import { motion } from "framer-motion";
+import {
+  CalendarDays,
+  Clock3,
+  MapPin,
+  Navigation,
+  Sparkles,
+} from "lucide-react";
 
 const Celebracion = ({
   titulo = "Celebración",
-  fecha = "11 Junio 2026",
-  hora = "4:30 PM",
-  lugar = "Salón Event Center",
-  direccion = "C.5 Pte. 400, Libertad, Heroica Puebla de Zaragoza, Pue.",
-  ubicacion = "https://maps.app.goo.gl/TsSDUBKAractwi8F8",
+  fecha = "7 de Noviembre",
+  hora = "7:00 PM",
+  lugar = "Lugar de la celebración",
+  direccion = "C. Andrés Renteria 83, Lomas de La Soledad, 45403 Tonalá, Jal.",
+  ubicacion = "https://maps.app.goo.gl/M8oPzS3uoApP9fkk8",
 }) => {
   return (
-    <section className="w-full bg-[#F4E8DD] px-5 py-20 sm:py-24 overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 45 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        viewport={{ once: true }}
+    <section
+      className="
+        relative
+        isolate
+        w-full
+        overflow-hidden
+        bg-[#F2E9DA]
+        px-5
+        py-24
+        sm:px-8
+        sm:py-28
+      "
+    >
+      {/* ========================================
+          DECORACIÓN DE FONDO
+      ======================================== */}
+
+      <div
         className="
-          max-w-5xl
-          mx-auto
-          bg-white/65
-          backdrop-blur-md
-          border
-          border-[#B88A8A]/35
-          shadow-[0_25px_70px_rgba(74,20,29,0.16)]
-          rounded-tl-[4rem]
-          rounded-br-[4rem]
-          rounded-tr-2xl
-          rounded-bl-2xl
-          px-6
-          py-14
-          sm:px-12
-          sm:py-16
-          text-center
+          pointer-events-none
+          absolute
+          -left-40
+          -top-40
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-[#C99A3D]/10
+          blur-[110px]
         "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-40
+          -right-40
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-[#C99A3D]/10
+          blur-[110px]
+        "
+      />
+
+      {/* Líneas decorativas */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-0
+          top-10
+          h-px
+          w-28
+          bg-gradient-to-r
+          from-[#C99A3D]/60
+          to-transparent
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-10
+          right-0
+          h-px
+          w-28
+          bg-gradient-to-l
+          from-[#C99A3D]/60
+          to-transparent
+        "
+      />
+
+      {/* Destellos */}
+
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          left-[8%]
+          top-[13%]
+          text-[#B8862E]/35
+        "
+        animate={{
+          opacity: [0.3, 0.8, 0.3],
+          scale: [0.85, 1.1, 0.85],
+        }}
+        transition={{
+          duration: 3.5,
+          repeat: Infinity,
+        }}
       >
-        <p className="uppercase tracking-[0.35em] text-[#B88A8A] text-xs sm:text-sm font-semibold mb-4">
-          Día especial
-        </p>
+        <Sparkles size={17} strokeWidth={1} />
+      </motion.div>
 
-        <h2 className="font-playfair text-[#4A141D] text-4xl sm:text-5xl md:text-6xl">
-          {titulo}
-        </h2>
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          bottom-[12%]
+          right-[8%]
+          text-[#B8862E]/30
+        "
+        animate={{
+          opacity: [0.2, 0.7, 0.2],
+          scale: [0.8, 1.1, 0.8],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          delay: 1,
+        }}
+      >
+        <Sparkles size={14} strokeWidth={1} />
+      </motion.div>
 
-        <div className="w-24 h-px bg-[#B88A8A] mx-auto my-8"></div>
+      {/* ========================================
+          CONTENIDO
+      ======================================== */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
-          <div className="bg-[#4A141D] text-[#F4E8DD] rounded-3xl px-6 py-6 shadow-lg">
-            <p className="text-sm uppercase tracking-[0.2em] text-[#F4E8DD]/70 mb-2">
-              Fecha
-            </p>
-            <p className="font-playfair text-2xl sm:text-3xl">{fecha}</p>
-          </div>
+      <div className="relative z-10 mx-auto max-w-4xl">
 
-          <div className="bg-[#4A141D] text-[#F4E8DD] rounded-3xl px-6 py-6 shadow-lg">
-            <p className="text-sm uppercase tracking-[0.2em] text-[#F4E8DD]/70 mb-2">
-              Hora
-            </p>
-            <p className="font-playfair text-2xl sm:text-3xl">{hora}</p>
-          </div>
-        </div>
+        {/* ENCABEZADO */}
 
-        <div className="mt-10 max-w-2xl mx-auto">
-          <p className="font-cursiveDancing text-[#B88A8A] text-4xl mb-3">
-            Ubicación
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          viewport={{ once: true }}
+          className="mb-12 text-center"
+        >
+          <p
+            className="
+              mb-4
+              text-[10px]
+              font-medium
+              uppercase
+              tracking-[0.42em]
+              text-[#A97625]
+              sm:text-xs
+            "
+          >
+            Te esperamos
           </p>
 
-          <h3 className="font-playfair text-[#4A141D] text-2xl sm:text-3xl mb-4">
-            {lugar}
-          </h3>
+          <h2
+            className="
+              font-['Playfair_Display']
+              text-4xl
+              font-normal
+              text-[#17130D]
+              sm:text-5xl
+              md:text-6xl
+            "
+          >
+            {titulo}
+          </h2>
 
-          <p className="text-[#4A141D]/75 text-base sm:text-lg leading-relaxed">
-            {direccion}
-          </p>
-        </div>
+          {/* Divisor */}
 
-        <a
-          href={ubicacion}
-          target="_blank"
-          rel="noopener noreferrer"
+          <div
+            className="
+              mx-auto
+              mt-7
+              flex
+              max-w-[250px]
+              items-center
+              justify-center
+              gap-3
+            "
+          >
+            <div
+              className="
+                h-px
+                flex-1
+                bg-gradient-to-r
+                from-transparent
+                to-[#B8862E]/70
+              "
+            />
+
+            <span className="text-[8px] text-[#B8862E]">
+              ◆
+            </span>
+
+            <div
+              className="
+                h-px
+                flex-1
+                bg-gradient-to-l
+                from-transparent
+                to-[#B8862E]/70
+              "
+            />
+          </div>
+        </motion.div>
+
+        {/* ========================================
+            TARJETA PRINCIPAL
+        ======================================== */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 40,
+            scale: 0.98,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          viewport={{ once: true }}
           className="
-            inline-block
-            mt-10
-            bg-[#4A141D]
-            text-[#F4E8DD]
-            px-9
-            py-4
-            rounded-full
-            font-playfair
-            text-base
-            sm:text-lg
-            tracking-wide
-            shadow-[0_15px_35px_rgba(74,20,29,0.28)]
-            hover:bg-[#6B1F2A]
-            hover:scale-105
-            transition
-            duration-300
+            relative
+            overflow-hidden
+            border
+            border-[#B8862E]/45
+            bg-[#FAF6ED]
+            px-6
+            py-11
+            shadow-[0_25px_65px_rgba(74,52,20,0.13)]
+            sm:px-10
+            sm:py-14
           "
         >
-          Ver ubicación
-        </a>
-      </motion.div>
+          {/* BORDE INTERIOR */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-[7px]
+              border
+              border-[#C99A3D]/20
+            "
+          />
+
+          {/* Línea dorada superior */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-1/2
+              top-0
+              h-px
+              w-[65%]
+              -translate-x-1/2
+              bg-gradient-to-r
+              from-transparent
+              via-[#C99A3D]
+              to-transparent
+            "
+          />
+
+          {/* ========================================
+              ICONO PRINCIPAL
+          ======================================== */}
+
+          <div
+            className="
+              relative
+              z-10
+              mx-auto
+              mb-8
+              flex
+              h-16
+              w-16
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-[#B8862E]/45
+              bg-[#F2E9DA]
+              text-[#A97625]
+              shadow-[0_8px_25px_rgba(184,134,46,0.12)]
+            "
+          >
+            <MapPin size={26} strokeWidth={1.3} />
+          </div>
+
+          {/* ========================================
+              FECHA Y HORA
+          ======================================== */}
+
+          <div
+            className="
+              relative
+              z-10
+              grid
+              grid-cols-1
+              gap-4
+              sm:grid-cols-2
+            "
+          >
+            {/* FECHA */}
+
+            <motion.div
+              whileHover={{
+                y: -4,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+              className="
+                border
+                border-[#B8862E]/30
+                bg-[#F2E9DA]/65
+                px-5
+                py-7
+                text-center
+              "
+            >
+              <div
+                className="
+                  mx-auto
+                  mb-4
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-[#B8862E]/35
+                  bg-[#FAF6ED]
+                  text-[#A97625]
+                "
+              >
+                <CalendarDays
+                  size={18}
+                  strokeWidth={1.4}
+                />
+              </div>
+
+              <p
+                className="
+                  mb-2
+                  text-[9px]
+                  uppercase
+                  tracking-[0.3em]
+                  text-[#A97625]
+                "
+              >
+                Fecha
+              </p>
+
+              <p
+                className="
+                  font-['Playfair_Display']
+                  text-xl
+                  text-[#17130D]
+                  sm:text-2xl
+                "
+              >
+                {fecha}
+              </p>
+            </motion.div>
+
+            {/* HORA */}
+
+            <motion.div
+              whileHover={{
+                y: -4,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
+              className="
+                border
+                border-[#B8862E]/30
+                bg-[#F2E9DA]/65
+                px-5
+                py-7
+                text-center
+              "
+            >
+              <div
+                className="
+                  mx-auto
+                  mb-4
+                  flex
+                  h-10
+                  w-10
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-[#B8862E]/35
+                  bg-[#FAF6ED]
+                  text-[#A97625]
+                "
+              >
+                <Clock3
+                  size={18}
+                  strokeWidth={1.4}
+                />
+              </div>
+
+              <p
+                className="
+                  mb-2
+                  text-[9px]
+                  uppercase
+                  tracking-[0.3em]
+                  text-[#A97625]
+                "
+              >
+                Hora
+              </p>
+
+              <p
+                className="
+                  font-['Playfair_Display']
+                  text-2xl
+                  text-[#17130D]
+                "
+              >
+                {hora}
+              </p>
+            </motion.div>
+          </div>
+
+          {/* ========================================
+              DATOS DEL LUGAR
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+            }}
+            viewport={{ once: true }}
+            className="
+              relative
+              z-10
+              mx-auto
+              mt-10
+              max-w-2xl
+              text-center
+            "
+          >
+            <p
+              className="
+                mb-3
+                text-[10px]
+                uppercase
+                tracking-[0.38em]
+                text-[#A97625]
+              "
+            >
+              Ubicación
+            </p>
+
+            <h3
+              className="
+                font-['Playfair_Display']
+                text-2xl
+                font-normal
+                text-[#17130D]
+                sm:text-3xl
+              "
+            >
+              {lugar}
+            </h3>
+
+            <div
+              className="
+                mx-auto
+                my-5
+                h-px
+                w-12
+                bg-[#B8862E]/55
+              "
+            />
+
+            <p
+              className="
+                mx-auto
+                max-w-lg
+                font-['Playfair_Display']
+                text-[15px]
+                leading-7
+                text-[#17130D]/65
+                sm:text-base
+                sm:leading-8
+              "
+            >
+              {direccion}
+            </p>
+
+            {/* ========================================
+                BOTÓN MAPS
+            ======================================== */}
+
+            <motion.a
+              href={ubicacion}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                y: -3,
+                scale: 1.02,
+              }}
+              whileTap={{
+                scale: 0.98,
+              }}
+              className="
+                mx-auto
+                mt-9
+                flex
+                w-fit
+                items-center
+                justify-center
+                gap-3
+                border
+                border-[#B57D25]
+                bg-gradient-to-r
+                from-[#A96F1C]
+                via-[#D7AA50]
+                to-[#A96F1C]
+                px-9
+                py-4
+                text-[11px]
+                font-semibold
+                uppercase
+                tracking-[0.17em]
+                text-[#11100D]
+                shadow-[0_12px_30px_rgba(169,111,28,0.20)]
+                transition
+                duration-300
+              "
+            >
+              <Navigation
+                size={16}
+                strokeWidth={1.8}
+              />
+
+              Ver ubicación
+            </motion.a>
+          </motion.div>
+
+          {/* ========================================
+              FRASE FINAL
+          ======================================== */}
+
+          <div
+            className="
+              relative
+              z-10
+              mt-11
+              border-t
+              border-[#B8862E]/20
+              pt-7
+              text-center
+            "
+          >
+            <p
+              className="
+                font-['Playfair_Display']
+                text-sm
+                italic
+                tracking-wide
+                text-[#8C6729]
+                sm:text-base
+              "
+            >
+              Una noche especial merece un lugar especial
+            </p>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 };

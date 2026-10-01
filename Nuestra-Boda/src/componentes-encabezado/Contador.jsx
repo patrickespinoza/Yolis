@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 
 const Contador = ({
-  titulo = "¡Estás invitado!",
-  texto = "Nos encantaría que seas parte de este momento tan especial para nosotros.",
-  frase = "¡Falta poco!",
-  fecha = "2027-07-11T00:00:00",
+  titulo = "50 Años",
+  texto = "Una vida llena de historias, momentos inolvidables y aún quedan muchos por celebrar.",
+  frase = "Celebremos juntos",
+  fecha = "2026-11-07T00:00:00",
 }) => {
   const calculateTime = () => {
     const difference = +new Date(fecha) - +new Date();
@@ -19,7 +20,12 @@ const Contador = ({
       };
     }
 
-    return {};
+    return {
+      Días: 0,
+      Horas: 0,
+      Minutos: 0,
+      Segundos: 0,
+    };
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTime());
@@ -32,101 +38,394 @@ const Contador = ({
     return () => clearInterval(timer);
   }, [fecha]);
 
+  const unidades = Object.keys(timeLeft);
+
   return (
-    <section className="relative overflow-hidden bg-[#4A141D] py-24 px-6">
+    <section
+      className="
+        relative
+        isolate
+        overflow-hidden
+        bg-[#070707]
+        px-5
+        py-24
+        sm:px-8
+        sm:py-28
+      "
+    >
+      {/* ========================================
+          FONDO / ILUMINACIÓN
+      ======================================== */}
 
-      {/* Decoración */}
-      <div className="absolute -top-36 -left-24 w-[450px] h-[450px] bg-[#B88A8A]/20 rounded-full blur-3xl"></div>
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-[radial-gradient(circle_at_50%_25%,rgba(201,156,73,0.13),transparent_35%)]
+        "
+      />
 
-      <div className="absolute -bottom-40 -right-24 w-[380px] h-[380px] bg-[#F4E8DD]/10 rounded-full blur-3xl"></div>
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -left-32
+          top-10
+          h-[350px]
+          w-[350px]
+          rounded-full
+          bg-[#d5a84b]/[0.07]
+          blur-[100px]
+        "
+      />
 
-      <div className="relative max-w-6xl mx-auto">
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-32
+          -right-24
+          h-[380px]
+          w-[380px]
+          rounded-full
+          bg-[#d5a84b]/[0.08]
+          blur-[110px]
+        "
+      />
+
+      {/* ========================================
+          DESTELLOS DECORATIVOS
+      ======================================== */}
+
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          left-[9%]
+          top-[12%]
+          text-[#d7ae5d]/50
+        "
+        animate={{
+          opacity: [0.3, 1, 0.3],
+          scale: [0.85, 1.15, 0.85],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        <Sparkles size={18} strokeWidth={1} />
+      </motion.div>
+
+      <motion.div
+        className="
+          pointer-events-none
+          absolute
+          right-[10%]
+          top-[30%]
+          text-[#d7ae5d]/40
+        "
+        animate={{
+          opacity: [0.2, 0.8, 0.2],
+          scale: [0.8, 1.1, 0.8],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      >
+        <Sparkles size={13} strokeWidth={1} />
+      </motion.div>
+
+      {/* ========================================
+          CONTENIDO
+      ======================================== */}
+
+      <div className="relative z-10 mx-auto max-w-5xl text-center">
+
+        {/* SUBTÍTULO */}
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="
+            mb-5
+            text-[10px]
+            uppercase
+            tracking-[0.45em]
+            text-[#d5a84b]
+            sm:text-xs
+          "
+        >
+          Una fecha para recordar
+        </motion.p>
+
+
+
+        {/* ========================================
+            LÍNEA DECORATIVA
+        ======================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="
+            mx-auto
+            my-8
+            flex
+            max-w-[280px]
+            items-center
+            justify-center
+            gap-4
+          "
+        >
+          <div
+            className="
+              h-px
+              flex-1
+              bg-gradient-to-r
+              from-transparent
+              to-[#d5a84b]/70
+            "
+          />
+
+          <span className="text-[9px] text-[#d5a84b]">
+            ◆
+          </span>
+
+          <div
+            className="
+              h-px
+              flex-1
+              bg-gradient-to-l
+              from-transparent
+              to-[#d5a84b]/70
+            "
+          />
+        </motion.div>
+
+        {/* ========================================
+            TEXTO
+        ======================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <h3
+            className="
+              font-['Playfair_Display']
+              text-2xl
+              font-normal
+              tracking-wide
+              text-[#f0e5ce]
+              sm:text-3xl
+            "
+          >
+            {frase}
+          </h3>
+
+          <p
+            className="
+              mx-auto
+              mt-5
+              max-w-xl
+              font-['Playfair_Display']
+              text-[15px]
+              leading-7
+              text-[#eee2cc]/70
+              sm:text-base
+              sm:leading-8
+            "
+          >
+            {texto}
+          </p>
+        </motion.div>
+
+        {/* ========================================
+            CONTADOR
+        ======================================== */}
 
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h2 className="font-cursiveDancing text-[#F4E8DD] text-5xl sm:text-6xl md:text-7xl">
-            {titulo}
-          </h2>
-
-          <p className="mt-8 text-[#F8F2ED] text-lg sm:text-2xl md:text-3xl font-playfair max-w-3xl mx-auto leading-relaxed">
-            {texto}
-          </p>
-
-          <div className="w-24 h-[2px] bg-[#B88A8A] mx-auto my-10"></div>
-
-          <p className="font-playfair italic text-[#F4E8DD] text-2xl sm:text-3xl">
-            {frase}
-          </p>
-        </motion.div>
-
-        {/* CONTADOR */}
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          transition={{
+            duration: 0.9,
+            delay: 0.25,
+          }}
           viewport={{ once: true }}
           className="
-            mt-16
-            max-w-4xl
             mx-auto
-            bg-[#F4E8DD]
-            rounded-[2rem]
-            shadow-[0_25px_70px_rgba(0,0,0,.35)]
-            p-8
+            mt-14
+            max-w-3xl
           "
         >
+          <p
+            className="
+              mb-6
+              text-[9px]
+              uppercase
+              tracking-[0.4em]
+              text-[#d5a84b]/75
+              sm:text-[10px]
+            "
+          >
+            Faltan
+          </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-
-            {Object.keys(timeLeft).map((item) => (
-
+          <div
+            className="
+              grid
+              grid-cols-4
+              gap-2
+              sm:gap-4
+            "
+          >
+            {unidades.map((item, index) => (
               <motion.div
                 key={item}
-                whileHover={{ y: -5, scale: 1.04 }}
-                className="flex flex-col items-center"
+                initial={{
+                  opacity: 0,
+                  y: 25,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.1 * index,
+                }}
+                viewport={{ once: true }}
+                whileHover={{
+                  y: -4,
+                }}
+                className="
+                  relative
+                  overflow-hidden
+                  border
+                  border-[#d5a84b]/45
+                  bg-[#0c0c0c]/90
+                  px-1
+                  py-5
+                  shadow-[0_15px_35px_rgba(0,0,0,0.25)]
+                  sm:px-4
+                  sm:py-7
+                "
               >
+                {/* brillo superior */}
 
                 <div
                   className="
-                    w-20
-                    h-20
-                    sm:w-24
-                    sm:h-24
-                    rounded-full
-                    bg-[#4A141D]
-                    text-[#F4E8DD]
-                    flex
-                    items-center
-                    justify-center
-                    text-3xl
+                    pointer-events-none
+                    absolute
+                    left-1/2
+                    top-0
+                    h-px
+                    w-[65%]
+                    -translate-x-1/2
+                    bg-gradient-to-r
+                    from-transparent
+                    via-[#e3bd68]
+                    to-transparent
+                  "
+                />
+
+                {/* NÚMERO */}
+
+                <motion.span
+                  key={timeLeft[item]}
+                  initial={{
+                    opacity: 0.4,
+                    y: -3,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  className="
+                    block
+                    font-['Playfair_Display']
+                    text-2xl
+                    font-normal
+                    tabular-nums
+                    text-[#e4bd6c]
                     sm:text-4xl
-                    font-bold
-                    shadow-xl
+                    md:text-5xl
                   "
                 >
-                  {timeLeft[item]}
-                </div>
+                  {String(timeLeft[item]).padStart(2, "0")}
+                </motion.span>
 
-                <span className="mt-4 uppercase tracking-[0.18em] text-[#4A141D] text-sm font-semibold">
+                {/* NOMBRE */}
+
+                <span
+                  className="
+                    mt-3
+                    block
+                    text-[7px]
+                    uppercase
+                    tracking-[0.12em]
+                    text-[#eee2cc]/55
+                    sm:text-[9px]
+                    sm:tracking-[0.22em]
+                  "
+                >
                   {item}
                 </span>
-
               </motion.div>
-
             ))}
-
           </div>
-
         </motion.div>
 
-      </div>
+        {/* ========================================
+            FRASE FINAL
+        ======================================== */}
 
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{
+            duration: 1,
+            delay: 0.5,
+          }}
+          viewport={{ once: true }}
+          className="mt-12"
+        >
+          <p
+            className="
+              font-['Playfair_Display']
+              text-sm
+              italic
+              tracking-wide
+              text-[#d5a84b]/70
+              sm:text-base
+            "
+          >
+            Una noche para celebrar la vida
+          </p>
+
+          <div
+            className="
+              mx-auto
+              mt-5
+              h-px
+              w-12
+              bg-[#d5a84b]/50
+            "
+          />
+        </motion.div>
+      </div>
     </section>
   );
 };

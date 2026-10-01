@@ -2,7 +2,15 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Music, Pause, Play, Volume2, VolumeX, X } from "lucide-react";
+import {
+  Music,
+  Pause,
+  Play,
+  Volume2,
+  VolumeX,
+  X,
+  Sparkles,
+} from "lucide-react";
 
 const Musica = () => {
   const audioRef = useRef(null);
@@ -52,6 +60,7 @@ const Musica = () => {
 
     try {
       setCargando(true);
+
       audio.muted = false;
       setSilenciado(false);
 
@@ -86,7 +95,12 @@ const Musica = () => {
     if (audio.paused) {
       try {
         setCargando(true);
+
+        audio.muted = false;
+        setSilenciado(false);
+
         await audio.play();
+
         setReproduciendo(true);
       } catch (error) {
         console.error("No se pudo reproducir la música:", error);
@@ -109,6 +123,7 @@ const Musica = () => {
 
   return (
     <>
+      {/* AUDIO */}
       <audio
         ref={audioRef}
         src="/musica.mp3"
@@ -116,6 +131,7 @@ const Musica = () => {
         preload="auto"
       />
 
+      {/* MODAL INICIAL */}
       <AnimatePresence>
         {mostrarModal && (
           <motion.div
@@ -126,29 +142,61 @@ const Musica = () => {
               flex
               items-center
               justify-center
-              bg-black/65
+              overflow-hidden
+              bg-black/80
               px-5
-              backdrop-blur-sm
+              backdrop-blur-[5px]
             "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
+            {/* LUZ DORADA DE FONDO */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                left-1/2
+                top-1/2
+                h-[500px]
+                w-[500px]
+                -translate-x-1/2
+                -translate-y-1/2
+                rounded-full
+                bg-[#d5a84b]/10
+                blur-[120px]
+              "
+            />
+
+            {/* PARTÍCULAS */}
+            <div
+              className="
+                pointer-events-none
+                absolute
+                left-[10%]
+                top-[15%]
+                h-1
+                w-1
+                rounded-full
+                bg-[#e6c16a]
+                shadow-[40px_80px_0_#d5a84b,120px_20px_0_#f3d98b,240px_120px_0_#d5a84b,300px_20px_0_#e6c16a]
+              "
+            />
+
             <motion.div
               className="
                 relative
                 w-full
-                max-w-[420px]
+                max-w-[410px]
                 overflow-hidden
-                rounded-tl-[42px]
-                rounded-br-[42px]
+                rounded-[3px]
                 border
-                border-[#b89b5e]/40
-                bg-[#f8f5ef]
+                border-[#d7ae5d]/60
+                bg-[#090909]
                 px-7
                 py-10
                 text-center
-                shadow-[0_25px_70px_rgba(0,0,0,0.35)]
+                shadow-[0_30px_100px_rgba(0,0,0,0.75)]
                 sm:px-10
                 sm:py-12
               "
@@ -168,10 +216,47 @@ const Musica = () => {
                 scale: 0.96,
               }}
               transition={{
-                duration: 0.55,
-                ease: "easeOut",
+                duration: 0.6,
+                ease: [0.22, 1, 0.36, 1],
               }}
             >
+              {/* BORDE INTERIOR */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-[7px]
+                  border
+                  border-[#d7ae5d]/20
+                "
+              />
+
+              {/* DECORACIÓN SUPERIOR */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  left-0
+                  top-0
+                  h-32
+                  w-32
+                  bg-[radial-gradient(circle_at_top_left,rgba(215,174,93,0.20),transparent_68%)]
+                "
+              />
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  bottom-0
+                  right-0
+                  h-32
+                  w-32
+                  bg-[radial-gradient(circle_at_bottom_right,rgba(215,174,93,0.18),transparent_68%)]
+                "
+              />
+
+              {/* CERRAR */}
               <button
                 type="button"
                 onClick={continuarSinMusica}
@@ -180,6 +265,7 @@ const Musica = () => {
                   absolute
                   right-5
                   top-5
+                  z-20
                   flex
                   h-9
                   w-9
@@ -187,19 +273,25 @@ const Musica = () => {
                   justify-center
                   rounded-full
                   border
-                  border-[#b89b5e]/30
-                  bg-white/70
-                  text-[#5e6650]
+                  border-[#d7ae5d]/30
+                  bg-black/50
+                  text-[#d7ae5d]
                   transition
+                  duration-300
                   hover:scale-105
-                  hover:bg-white
+                  hover:border-[#d7ae5d]
+                  hover:bg-[#d7ae5d]
+                  hover:text-black
                 "
               >
                 <X size={17} />
               </button>
 
+              {/* ICONO */}
               <motion.div
                 className="
+                  relative
+                  z-10
                   mx-auto
                   mb-6
                   flex
@@ -209,10 +301,12 @@ const Musica = () => {
                   justify-center
                   rounded-full
                   border
-                  border-[#b89b5e]/35
-                  bg-white
-                  text-[#b89b5e]
-                  shadow-[0_10px_30px_rgba(184,155,94,0.18)]
+                  border-[#d7ae5d]/60
+                  bg-gradient-to-br
+                  from-[#17130c]
+                  to-black
+                  text-[#e2bd6b]
+                  shadow-[0_0_35px_rgba(215,174,93,0.16)]
                 "
                 animate={{
                   rotate: reproduciendo ? 360 : 0,
@@ -223,70 +317,131 @@ const Musica = () => {
                   ease: "linear",
                 }}
               >
-                <Music size={31} strokeWidth={1.5} />
+                <Music size={31} strokeWidth={1.4} />
+
+                <motion.div
+                  className="
+                    absolute
+                    -right-1
+                    -top-1
+                    text-[#e6c16a]
+                  "
+                  animate={{
+                    scale: [1, 1.25, 1],
+                    opacity: [0.5, 1, 0.5],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                  }}
+                >
+                  <Sparkles size={15} />
+                </motion.div>
               </motion.div>
 
+              {/* SUBTÍTULO */}
               <p
                 className="
+                  relative
+                  z-10
                   mb-3
-                  text-xs
+                  text-[10px]
                   uppercase
-                  tracking-[0.32em]
-                  text-[#b89b5e]
+                  tracking-[0.35em]
+                  text-[#c99c49]
                 "
               >
-                Una experiencia especial
+                Celebremos juntos
               </p>
 
+              {/* TÍTULO */}
               <h2
                 className="
+                  relative
+                  z-10
                   mb-4
                   font-['Playfair_Display']
                   text-3xl
-                  font-medium
-                  text-[#5e6650]
+                  font-normal
+                  text-[#e4bd6c]
                   sm:text-4xl
                 "
               >
-                Música para acompañarte
+                Una canción especial
               </h2>
 
-              <p
+              {/* DIVISOR */}
+              <div
                 className="
+                  relative
+                  z-10
                   mx-auto
-                  mb-8
-                  max-w-[310px]
-                  text-sm
-                  leading-7
-                  text-[#5e6650]/75
+                  mb-6
+                  flex
+                  max-w-[220px]
+                  items-center
+                  justify-center
+                  gap-3
                 "
               >
-                Hemos preparado una canción especial para acompañarte durante
-                esta invitación.
+                <div className="h-px flex-1 bg-gradient-to-r from-transparent to-[#d7ae5d]/60" />
+
+                <span className="text-[10px] text-[#d7ae5d]">
+                  ◆
+                </span>
+
+                <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[#d7ae5d]/60" />
+              </div>
+
+              {/* TEXTO */}
+              <p
+                className="
+                  relative
+                  z-10
+                  mx-auto
+                  mb-8
+                  max-w-[300px]
+                  font-['Playfair_Display']
+                  text-[15px]
+                  leading-7
+                  text-[#e9dfca]/75
+                "
+              >
+                La música también forma parte de los momentos
+                que hacen especial esta celebración.
               </p>
 
-              <div className="flex flex-col gap-3">
+              {/* BOTONES */}
+              <div className="relative z-10 flex flex-col gap-3">
                 <button
                   type="button"
                   onClick={reproducirMusica}
                   disabled={cargando}
                   className="
+                    group
                     flex
                     w-full
                     items-center
                     justify-center
                     gap-3
-                    rounded-full
-                    bg-[#5e6650]
+                    border
+                    border-[#e1b75e]
+                    bg-gradient-to-r
+                    from-[#b47b22]
+                    via-[#e1b75e]
+                    to-[#b47b22]
                     px-6
-                    py-4
-                    text-sm
+                    py-[15px]
+                    text-xs
+                    font-semibold
                     uppercase
-                    tracking-[0.16em]
-                    text-white
+                    tracking-[0.18em]
+                    text-[#080808]
+                    shadow-[0_10px_30px_rgba(201,156,73,0.15)]
                     transition
+                    duration-300
                     hover:-translate-y-0.5
-                    hover:bg-[#4f5744]
+                    hover:brightness-110
                     disabled:cursor-not-allowed
                     disabled:opacity-70
                   "
@@ -300,15 +455,20 @@ const Musica = () => {
                           animate-spin
                           rounded-full
                           border-2
-                          border-white/40
-                          border-t-white
+                          border-black/30
+                          border-t-black
                         "
                       />
+
                       Cargando
                     </>
                   ) : (
                     <>
-                      <Play size={17} fill="currentColor" />
+                      <Play
+                        size={16}
+                        fill="currentColor"
+                      />
+
                       Escuchar música
                     </>
                   )}
@@ -319,28 +479,45 @@ const Musica = () => {
                   onClick={continuarSinMusica}
                   className="
                     w-full
-                    rounded-full
                     border
-                    border-[#b89b5e]/45
+                    border-[#d7ae5d]/35
                     bg-transparent
                     px-6
-                    py-4
-                    text-sm
+                    py-[14px]
+                    text-[11px]
                     uppercase
-                    tracking-[0.14em]
-                    text-[#5e6650]
+                    tracking-[0.17em]
+                    text-[#d7ae5d]
                     transition
-                    hover:bg-white
+                    duration-300
+                    hover:border-[#d7ae5d]/70
+                    hover:bg-[#d7ae5d]/10
                   "
                 >
                   Continuar sin música
                 </button>
               </div>
+
+              {/* TEXTO INFERIOR */}
+              <p
+                className="
+                  relative
+                  z-10
+                  mt-6
+                  text-[9px]
+                  uppercase
+                  tracking-[0.25em]
+                  text-white/30
+                "
+              >
+                50 años · Una vida por celebrar
+              </p>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* CONTROL FLOTANTE */}
       {!mostrarModal && (
         <motion.div
           className="
@@ -350,13 +527,12 @@ const Musica = () => {
             z-[9998]
             flex
             items-center
-            gap-2
-            rounded-full
+            gap-1
             border
-            border-[#b89b5e]/35
-            bg-[#f8f5ef]/95
-            p-2
-            shadow-[0_12px_35px_rgba(0,0,0,0.18)]
+            border-[#d7ae5d]/50
+            bg-[#080808]/95
+            p-[5px]
+            shadow-[0_12px_35px_rgba(0,0,0,0.45)]
             backdrop-blur-md
           "
           initial={{
@@ -373,11 +549,14 @@ const Musica = () => {
             duration: 0.45,
           }}
         >
+          {/* PLAY / PAUSE */}
           <button
             type="button"
             onClick={alternarReproduccion}
             aria-label={
-              reproduciendo ? "Pausar música" : "Reproducir música"
+              reproduciendo
+                ? "Pausar música"
+                : "Reproducir música"
             }
             className="
               flex
@@ -385,11 +564,13 @@ const Musica = () => {
               w-11
               items-center
               justify-center
-              rounded-full
-              bg-[#5e6650]
-              text-white
+              bg-gradient-to-br
+              from-[#e1b75e]
+              to-[#a96f1c]
+              text-black
               transition
-              hover:scale-105
+              duration-300
+              hover:brightness-110
             "
           >
             {cargando ? (
@@ -400,37 +581,48 @@ const Musica = () => {
                   animate-spin
                   rounded-full
                   border-2
-                  border-white/40
-                  border-t-white
+                  border-black/30
+                  border-t-black
                 "
               />
             ) : reproduciendo ? (
-              <Pause size={18} fill="currentColor" />
+              <Pause
+                size={17}
+                fill="currentColor"
+              />
             ) : (
-              <Play size={18} fill="currentColor" />
+              <Play
+                size={17}
+                fill="currentColor"
+              />
             )}
           </button>
 
+          {/* VOLUMEN */}
           <button
             type="button"
             onClick={alternarSilencio}
-            aria-label={silenciado ? "Activar sonido" : "Silenciar música"}
+            aria-label={
+              silenciado
+                ? "Activar sonido"
+                : "Silenciar música"
+            }
             className="
               flex
               h-10
               w-10
               items-center
               justify-center
-              rounded-full
-              text-[#b89b5e]
+              text-[#d7ae5d]
               transition
-              hover:bg-white
+              duration-300
+              hover:bg-[#d7ae5d]/10
             "
           >
             {silenciado ? (
-              <VolumeX size={19} />
+              <VolumeX size={18} />
             ) : (
-              <Volume2 size={19} />
+              <Volume2 size={18} />
             )}
           </button>
         </motion.div>
