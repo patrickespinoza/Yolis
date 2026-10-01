@@ -28,9 +28,7 @@ const Galeria = () => {
         sm:py-28
       "
     >
-      {/* ========================================
-          DECORACIÓN DE FONDO
-      ======================================== */}
+      {/* DECORACIÓN */}
 
       <div
         className="
@@ -59,8 +57,6 @@ const Galeria = () => {
           blur-[120px]
         "
       />
-
-      {/* DESTELLOS */}
 
       <motion.div
         className="
@@ -104,25 +100,15 @@ const Galeria = () => {
         <Sparkles size={14} strokeWidth={1} />
       </motion.div>
 
-      {/* ========================================
-          CONTENIDO
-      ======================================== */}
-
       <div className="relative z-10 mx-auto max-w-6xl">
 
-        {/* ========================================
+        {/* ==========================================
             ENCABEZADO
-        ======================================== */}
+        ========================================== */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -130,8 +116,6 @@ const Galeria = () => {
           viewport={{ once: true }}
           className="mb-12 text-center sm:mb-16"
         >
-
-
           <h2
             className="
               font-['Playfair_Display']
@@ -144,8 +128,6 @@ const Galeria = () => {
           >
             Recuerdos
           </h2>
-
-          {/* DIVISOR */}
 
           <div
             className="
@@ -201,447 +183,173 @@ const Galeria = () => {
           </p>
         </motion.div>
 
-        {/* ========================================
-            GALERÍA
-        ======================================== */}
+        {/* ==========================================
+            GALERÍA CELULAR / TABLET
 
-        <div
-          className="
-            mx-auto
-            grid
-            max-w-5xl
-            grid-cols-2
-            gap-3
-            sm:gap-5
-            lg:grid-cols-12
-            lg:grid-rows-2
-          "
-        >
-          {/* ========================================
-              FOTO 1 - PRINCIPAL
-          ======================================== */}
+            Una debajo de otra
+            Sin recortar las fotografías
+        ========================================== */}
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 35,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
-            viewport={{ once: true }}
-            className="
-              group
-              relative
-              col-span-2
-              overflow-hidden
-              border
-              border-[#B8862E]/40
-              bg-[#FAF6ED]
-              p-[5px]
-              shadow-[0_20px_45px_rgba(69,47,17,0.12)]
-
-              lg:col-span-7
-              lg:row-span-2
-            "
-          >
-            <div
+        <div className="space-y-6 lg:hidden">
+          {images.map((imagen, index) => (
+            <motion.div
+              key={imagen}
+              initial={{
+                opacity: 0,
+                y: 35,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.75,
+                delay: Math.min(index * 0.05, 0.2),
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              viewport={{
+                once: true,
+                amount: 0.1,
+              }}
               className="
-                pointer-events-none
-                absolute
-                inset-[9px]
-                z-20
+                relative
+                w-full
                 border
-                border-[#D8B66A]/25
+                border-[#B8862E]/40
+                bg-[#FAF6ED]
+                p-[5px]
+                shadow-[0_15px_35px_rgba(69,47,17,0.10)]
               "
-            />
-
-            <div className="relative h-[490px] overflow-hidden sm:h-[660px] lg:h-[650px]">
-              <img
-                src={images[0]}
-                alt="Recuerdo especial"
-                loading="lazy"
-                className="
-                  h-full
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-[1200ms]
-                  ease-out
-                  group-hover:scale-[1.035]
-                "
-              />
-
-              {/* degradado inferior */}
+            >
+              {/* BORDE INTERIOR */}
 
               <div
                 className="
                   pointer-events-none
                   absolute
-                  inset-x-0
-                  bottom-0
-                  h-[35%]
-                  bg-gradient-to-t
-                  from-black/35
-                  to-transparent
+                  inset-[9px]
+                  z-20
+                  border
+                  border-[#D8B66A]/25
                 "
               />
-            </div>
-          </motion.div>
 
-          {/* ========================================
-              FOTO 2
-          ======================================== */}
+              {/* FOTO COMPLETA */}
 
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.1,
-            }}
-            viewport={{ once: true }}
-            className="
-              group
-              relative
-              overflow-hidden
-              border
-              border-[#B8862E]/35
-              bg-[#FAF6ED]
-              p-[4px]
-              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
-
-              lg:col-span-5
-            "
-          >
-            <div className="h-[430px] overflow-hidden sm:h-[510px]">
               <img
-                src={images[1]}
-                alt="Momento especial"
+                src={imagen}
+                alt={`Recuerdo ${index + 1}`}
                 loading="lazy"
                 className="
-                  h-full
+                  block
+                  h-auto
                   w-full
-                  object-cover
-                  transition-transform
-                  duration-[1200ms]
-                  ease-out
-                  group-hover:scale-[1.05]
+                  object-contain
                 "
               />
-            </div>
-          </motion.div>
-
-          {/* ========================================
-              FOTO 3
-          ======================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.2,
-            }}
-            viewport={{ once: true }}
-            className="
-              group
-              relative
-              overflow-hidden
-              border
-              border-[#B8862E]/35
-              bg-[#FAF6ED]
-              p-[4px]
-              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
-
-              lg:col-span-3
-            "
-          >
-            <div className="h-[430px] overflow-hidden sm:h-[510px]">
-              <img
-                src={images[2]}
-                alt="Recuerdo"
-                loading="lazy"
-                className="
-                  h-full
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-[1200ms]
-                  ease-out
-                  group-hover:scale-[1.05]
-                "
-              />
-            </div>
-          </motion.div>
-
-          {/* ========================================
-              FOTO 4
-          ======================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-            }}
-            viewport={{ once: true }}
-            className="
-              group
-              relative
-              overflow-hidden
-              border
-              border-[#B8862E]/35
-              bg-[#FAF6ED]
-              p-[4px]
-              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
-
-              lg:col-span-2
-            "
-          >
-            <div className="h-[430px] overflow-hidden sm:h-[510px]">
-              <img
-                src={images[3]}
-                alt="Momento inolvidable"
-                loading="lazy"
-                className="
-                  h-full
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-[1200ms]
-                  ease-out
-                  group-hover:scale-[1.05]
-                "
-              />
-            </div>
-          </motion.div>
-
-          {/* ========================================
-              FOTO 5
-          ======================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-            }}
-            viewport={{ once: true }}
-            className="
-              group
-              relative
-              overflow-hidden
-              border
-              border-[#B8862E]/35
-              bg-[#FAF6ED]
-              p-[4px]
-              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
-
-              lg:col-span-2
-            "
-          >
-            <div className="h-[430px] overflow-hidden sm:h-[510px]">
-              <img
-                src={images[4]}
-                alt="Momento inolvidable"
-                loading="lazy"
-                className="
-                  h-full
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-[1200ms]
-                  ease-out
-                  group-hover:scale-[1.05]
-                "
-              />
-            </div>
-          </motion.div>
-
-          {/* ========================================
-              FOTO 6
-          ======================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-            }}
-            viewport={{ once: true }}
-            className="
-              group
-              relative
-              overflow-hidden
-              border
-              border-[#B8862E]/35
-              bg-[#FAF6ED]
-              p-[4px]
-              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
-
-              lg:col-span-2
-            "
-          >
-            <div className="h-[530px] overflow-hidden sm:h-[610px]">
-              <img
-                src={images[5]}
-                alt="Momento inolvidable"
-                loading="lazy"
-                className="
-                  h-full
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-[1200ms]
-                  ease-out
-                  group-hover:scale-[1.05]
-                "
-              />
-            </div>
-          </motion.div>
-
-          {/* ========================================
-              FOTO 7
-          ======================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-            }}
-            viewport={{ once: true }}
-            className="
-              group
-              relative
-              overflow-hidden
-              border
-              border-[#B8862E]/35
-              bg-[#FAF6ED]
-              p-[4px]
-              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
-
-              lg:col-span-2
-            "
-          >
-            <div className="h-[430px] overflow-hidden sm:h-[510px]">
-              <img
-                src={images[6]}
-                alt="Momento inolvidable"
-                loading="lazy"
-                className="
-                  h-full
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-[1200ms]
-                  ease-out
-                  group-hover:scale-[1.05]
-                "
-              />
-            </div>
-          </motion.div>
-
-          {/* ========================================
-              FOTO 8
-          ======================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-            }}
-            viewport={{ once: true }}
-            className="
-              group
-              relative
-              overflow-hidden
-              border
-              border-[#B8862E]/35
-              bg-[#FAF6ED]
-              p-[4px]
-              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
-
-              lg:col-span-2
-            "
-          >
-            <div className="h-[430px] overflow-hidden sm:h-[510px]">
-              <img
-                src={images[7]}
-                alt="Momento inolvidable"
-                loading="lazy"
-                className="
-                  h-full
-                  w-full
-                  object-cover
-                  transition-transform
-                  duration-[1200ms]
-                  ease-out
-                  group-hover:scale-[1.05]
-                "
-              />
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
 
-        
+        {/* ==========================================
+            GALERÍA COMPUTADORA
 
-        {/* ========================================
+            Conservamos composición elegante
+        ========================================== */}
+
+        <div
+          className="
+            mx-auto
+            hidden
+            max-w-5xl
+            grid-cols-12
+            gap-5
+            lg:grid
+          "
+        >
+          {images.map((imagen, index) => {
+            let configuracion = "";
+
+            if (index === 0) {
+              configuracion =
+                "col-span-7 row-span-2 h-[650px]";
+            } else if (index === 1) {
+              configuracion =
+                "col-span-5 h-[315px]";
+            } else if (index === 2) {
+              configuracion =
+                "col-span-5 h-[315px]";
+            } else {
+              configuracion =
+                "col-span-4 h-[420px]";
+            }
+
+            return (
+              <motion.div
+                key={imagen}
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: Math.min(index * 0.05, 0.25),
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.1,
+                }}
+                className={`
+                  group
+                  relative
+                  overflow-hidden
+                  border
+                  border-[#B8862E]/35
+                  bg-[#FAF6ED]
+                  p-[5px]
+                  shadow-[0_15px_35px_rgba(69,47,17,0.10)]
+                  ${configuracion}
+                `}
+              >
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-[9px]
+                    z-20
+                    border
+                    border-[#D8B66A]/25
+                  "
+                />
+
+                <div className="h-full w-full overflow-hidden">
+                  <img
+                    src={imagen}
+                    alt={`Recuerdo ${index + 1}`}
+                    loading="lazy"
+                    className="
+                      h-full
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-[1200ms]
+                      ease-out
+                      group-hover:scale-[1.035]
+                    "
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* ==========================================
             FRASE FINAL
-        ======================================== */}
+        ========================================== */}
 
         <motion.div
           initial={{
@@ -654,12 +362,12 @@ const Galeria = () => {
           }}
           transition={{
             duration: 0.8,
-            delay: 0.25,
+            delay: 0.2,
           }}
           viewport={{ once: true }}
           className="
             mx-auto
-            mt-12
+            mt-14
             max-w-xl
             text-center
           "
