@@ -8,6 +8,10 @@ const Galeria = () => {
     "/carrusel02.jpg",
     "/carrusel01.jpg",
     "/carrusel04.jpg",
+    "/carrusel05.jpeg",
+    "/carrusel06.jpeg",
+    "/carrusel07.jpeg",
+    "/carrusel08.jpeg",
   ];
 
   return (
@@ -256,7 +260,7 @@ const Galeria = () => {
               "
             />
 
-            <div className="relative h-[390px] overflow-hidden sm:h-[560px] lg:h-[650px]">
+            <div className="relative h-[490px] overflow-hidden sm:h-[660px] lg:h-[650px]">
               <img
                 src={images[0]}
                 alt="Recuerdo especial"
@@ -320,7 +324,7 @@ const Galeria = () => {
               lg:col-span-5
             "
           >
-            <div className="h-[230px] overflow-hidden sm:h-[310px]">
+            <div className="h-[430px] overflow-hidden sm:h-[510px]">
               <img
                 src={images[1]}
                 alt="Momento especial"
@@ -369,7 +373,7 @@ const Galeria = () => {
               lg:col-span-3
             "
           >
-            <div className="h-[230px] overflow-hidden sm:h-[310px]">
+            <div className="h-[430px] overflow-hidden sm:h-[510px]">
               <img
                 src={images[2]}
                 alt="Recuerdo"
@@ -418,7 +422,7 @@ const Galeria = () => {
               lg:col-span-2
             "
           >
-            <div className="h-[230px] overflow-hidden sm:h-[310px]">
+            <div className="h-[430px] overflow-hidden sm:h-[510px]">
               <img
                 src={images[3]}
                 alt="Momento inolvidable"
@@ -435,7 +439,205 @@ const Galeria = () => {
               />
             </div>
           </motion.div>
+
+          {/* ========================================
+              FOTO 5
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+            }}
+            viewport={{ once: true }}
+            className="
+              group
+              relative
+              overflow-hidden
+              border
+              border-[#B8862E]/35
+              bg-[#FAF6ED]
+              p-[4px]
+              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
+
+              lg:col-span-2
+            "
+          >
+            <div className="h-[430px] overflow-hidden sm:h-[510px]">
+              <img
+                src={images[4]}
+                alt="Momento inolvidable"
+                loading="lazy"
+                className="
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-[1200ms]
+                  ease-out
+                  group-hover:scale-[1.05]
+                "
+              />
+            </div>
+          </motion.div>
+
+          {/* ========================================
+              FOTO 6
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+            }}
+            viewport={{ once: true }}
+            className="
+              group
+              relative
+              overflow-hidden
+              border
+              border-[#B8862E]/35
+              bg-[#FAF6ED]
+              p-[4px]
+              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
+
+              lg:col-span-2
+            "
+          >
+            <div className="h-[530px] overflow-hidden sm:h-[610px]">
+              <img
+                src={images[5]}
+                alt="Momento inolvidable"
+                loading="lazy"
+                className="
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-[1200ms]
+                  ease-out
+                  group-hover:scale-[1.05]
+                "
+              />
+            </div>
+          </motion.div>
+
+          {/* ========================================
+              FOTO 7
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+            }}
+            viewport={{ once: true }}
+            className="
+              group
+              relative
+              overflow-hidden
+              border
+              border-[#B8862E]/35
+              bg-[#FAF6ED]
+              p-[4px]
+              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
+
+              lg:col-span-2
+            "
+          >
+            <div className="h-[430px] overflow-hidden sm:h-[510px]">
+              <img
+                src={images[6]}
+                alt="Momento inolvidable"
+                loading="lazy"
+                className="
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-[1200ms]
+                  ease-out
+                  group-hover:scale-[1.05]
+                "
+              />
+            </div>
+          </motion.div>
+
+          {/* ========================================
+              FOTO 8
+          ======================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+            }}
+            viewport={{ once: true }}
+            className="
+              group
+              relative
+              overflow-hidden
+              border
+              border-[#B8862E]/35
+              bg-[#FAF6ED]
+              p-[4px]
+              shadow-[0_15px_35px_rgba(69,47,17,0.10)]
+
+              lg:col-span-2
+            "
+          >
+            <div className="h-[430px] overflow-hidden sm:h-[510px]">
+              <img
+                src={images[7]}
+                alt="Momento inolvidable"
+                loading="lazy"
+                className="
+                  h-full
+                  w-full
+                  object-cover
+                  transition-transform
+                  duration-[1200ms]
+                  ease-out
+                  group-hover:scale-[1.05]
+                "
+              />
+            </div>
+          </motion.div>
         </div>
+
+        
 
         {/* ========================================
             FRASE FINAL
